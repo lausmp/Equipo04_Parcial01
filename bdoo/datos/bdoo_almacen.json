@@ -2,7 +2,7 @@
   "metadatos_bdoo": {
     "motor": "BDOOEngine ODMG-3.0 Compatible",
     "version": "1.0.0",
-    "total_objetos": 67,
+    "total_objetos": 31,
     "extents": {
       "AgenteAnalitico": 1,
       "FuenteDato": 1,
@@ -16,25 +16,22 @@
       "UsuarioGerencial": 1,
       "Usuario": 1,
       "Sesion": 1,
-      "Pregunta": 13,
+      "Pregunta": 1,
       "ReglaSeguridadSQL": 1,
-      "ReglaValidacion": 6,
+      "ReglaValidacion": 3,
       "ReglaCoherenciaPeriodo": 1,
       "ReglaNoVacio": 1,
-      "ResultadoConsulta": 10,
-      "RespuestaAgente": 13,
-      "ReglaMargenValido": 1,
-      "ReglaFiltroDesconocido": 1,
-      "ReglaAmbiguedadCriterio": 1
+      "ResultadoConsulta": 1,
+      "RespuestaAgente": 1
     }
   },
   "objetos": {
-    "AGEN-AC35B7E83C4A": {
+    "AGEN-7370E00BBE31": {
       "__clase__": "AgenteAnalitico",
       "__modulo__": "bdoo.model.agente",
-      "oid": "AGEN-AC35B7E83C4A",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "AGEN-7370E00BBE31",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "nombre": "Agente Analítico de Ventas - Equipo 04",
       "version_agente": "1.0.0",
@@ -46,12 +43,12 @@
         "hasta": "2026-09-30"
       }
     },
-    "FUEN-CAD52B5F3C94": {
+    "FUEN-0CB2337934AF": {
       "__clase__": "FuenteDato",
       "__modulo__": "bdoo.model.fuente_dato",
-      "oid": "FUEN-CAD52B5F3C94",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "FUEN-0CB2337934AF",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "id_fuente": "SRC_DATAMART_VENTAS",
       "nombre_data_mart": "DataMart_Ventas",
@@ -83,31 +80,31 @@
       "tipo_almacen": "SQLITE_DIMENSIONAL",
       "es_fuente_oficial": true
     },
-    "CONS-62BEDDFE7611": {
+    "CONS-45E7E7704369": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-62BEDDFE7611",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-45E7E7704369",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q0",
       "nombre": "Periodo disponible en el Data Mart",
       "descripcion": "Obtiene la fecha mínima y máxima registrada en FactVentas con DimTiempo.",
       "plantilla_sql": "SELECT MIN(t.fecha) AS primera_fecha, MAX(t.fecha) AS ultima_fecha\n        FROM FactVentas f\n        JOIN DimTiempo t ON t.sk_tiempo = f.sk_tiempo;",
       "parametros_esperados": [],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Rango temporal: MIN(fecha) a MAX(fecha) en FactVentas",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-9E3FAA2B11C8"
+        "REGL-0F50ADDFA8C0",
+        "REGL-9F6C8B1DF9A6"
       ]
     },
-    "CONS-32B5B179AD52": {
+    "CONS-E212054DDC5A": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-32B5B179AD52",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-E212054DDC5A",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q1",
       "nombre": "Ingreso neto por mes",
@@ -117,20 +114,20 @@
         "desde",
         "hasta"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Ingreso neto = SUM(ingreso_neto) = SUM(ingreso_bruto - descuento)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6"
       ]
     },
-    "CONS-B16E426BBFF1": {
+    "CONS-F2EC1E15A6FA": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-B16E426BBFF1",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-F2EC1E15A6FA",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q2",
       "nombre": "Top N categorías con mayor margen bruto",
@@ -141,22 +138,22 @@
         "hasta",
         "n"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Margen bruto = SUM(ingreso_neto - costo_total) donde costo IS NOT NULL",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-71ABB71C25AA",
-        "REGL-1366B40D778C"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-5BE142D5BFD4",
+        "REGL-62864CF97C0C"
       ]
     },
-    "CONS-B7BF4BDF91AC": {
+    "CONS-5B0639F92CE3": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-B7BF4BDF91AC",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-5B0639F92CE3",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q3",
       "nombre": "Sucursal con ticket promedio más alto",
@@ -167,21 +164,21 @@
         "hasta",
         "n"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Ticket promedio = SUM(ingreso_neto) / COUNT(DISTINCT numero_ticket)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-1366B40D778C"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-62864CF97C0C"
       ]
     },
-    "CONS-0C5D16AB4AEC": {
+    "CONS-230189B131CA": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-0C5D16AB4AEC",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-230189B131CA",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q4",
       "nombre": "Reducción de volumen de compra por segmento de cliente",
@@ -193,21 +190,21 @@
         "b_desde",
         "b_hasta"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Variación = volumen_B - volumen_A (la cifra más negativa representa la mayor reducción)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-1366B40D778C"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-62864CF97C0C"
       ]
     },
-    "CONS-543F90C0D283": {
+    "CONS-1890F79B0974": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-543F90C0D283",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-1890F79B0974",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q5",
       "nombre": "Canal con mayor valor de ventas",
@@ -218,22 +215,22 @@
         "hasta",
         "n"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Ingreso neto = SUM(ingreso_neto)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-1366B40D778C",
-        "REGL-EB9358EAA673"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-62864CF97C0C",
+        "REGL-C021A0E7CA5F"
       ]
     },
-    "CONS-66F7DE670E14": {
+    "CONS-527E955711FA": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-66F7DE670E14",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-527E955711FA",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q6",
       "nombre": "Comparativa de margen entre dos canales",
@@ -245,21 +242,21 @@
         "desde",
         "hasta"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Margen % = SUM(margen_bruto) * 100.0 / SUM(ingreso_neto) (no se promedian porcentajes)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-71ABB71C25AA"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-5BE142D5BFD4"
       ]
     },
-    "CONS-4FF147DC2846": {
+    "CONS-E607CEBD8A29": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-4FF147DC2846",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-E607CEBD8A29",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q7",
       "nombre": "Producto líder de ventas en una categoría",
@@ -270,20 +267,20 @@
         "desde",
         "hasta"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Liderazgo medido por mayor ingreso neto total (y conteo de unidades)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6"
       ]
     },
-    "CONS-98FFD8CC0C59": {
+    "CONS-C90F1198C148": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-98FFD8CC0C59",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-C90F1198C148",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q8",
       "nombre": "Margen porcentual por categoría",
@@ -293,22 +290,22 @@
         "desde",
         "hasta"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Margen % = SUM(margen_bruto) * 100.0 / SUM(ingreso_neto)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-71ABB71C25AA",
-        "REGL-1366B40D778C"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-5BE142D5BFD4",
+        "REGL-62864CF97C0C"
       ]
     },
-    "CONS-A6B7023616D6": {
+    "CONS-287169E1D258": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-A6B7023616D6",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-287169E1D258",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q9",
       "nombre": "Top N clientes por ingreso neto",
@@ -319,21 +316,21 @@
         "hasta",
         "n"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Ingreso neto acumulado agrupado por clave natural id_cliente (unifica versiones SCD2)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-1366B40D778C"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-62864CF97C0C"
       ]
     },
-    "CONS-34166B79D920": {
+    "CONS-6471F15082BB": {
       "__clase__": "ConsultaAnalitica",
       "__modulo__": "bdoo.model.consulta_analitica",
-      "oid": "CONS-34166B79D920",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "CONS-6471F15082BB",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "Q10",
       "nombre": "Descuento total y porcentaje por canal",
@@ -343,21 +340,21 @@
         "desde",
         "hasta"
       ],
-      "fuente_dato_oid": "FUEN-CAD52B5F3C94",
+      "fuente_dato_oid": "FUEN-0CB2337934AF",
       "regla_calculo": "Descuento % = SUM(descuento) * 100.0 / SUM(ingreso_bruto)",
       "reglas_validacion_oids": [
-        "REGL-3AABB087DAF1",
-        "REGL-A1CC84EA32DE",
-        "REGL-9E3FAA2B11C8",
-        "REGL-1366B40D778C"
+        "REGL-0F50ADDFA8C0",
+        "REGL-EDF2E87C5B2E",
+        "REGL-9F6C8B1DF9A6",
+        "REGL-62864CF97C0C"
       ]
     },
-    "INTE-798D05987F22": {
+    "INTE-492694054F34": {
       "__clase__": "IntencionTendencia",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-798D05987F22",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-492694054F34",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_VENTAS_MES",
       "nombre": "Analizar evolución de ventas mensuales",
@@ -371,12 +368,12 @@
       ],
       "consulta_sugerida": "Q1"
     },
-    "INTE-6A04FAC1E735": {
+    "INTE-D449D57876A4": {
       "__clase__": "IntencionRanking",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-6A04FAC1E735",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-D449D57876A4",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_RANKING_CATEGORIA_MARGEN",
       "nombre": "Identificar categorías más rentables",
@@ -391,12 +388,12 @@
       "consulta_sugerida": "Q2",
       "limite_defecto": 5
     },
-    "INTE-CC681878CC98": {
+    "INTE-E599040DEF22": {
       "__clase__": "IntencionRanking",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-CC681878CC98",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-E599040DEF22",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_TICKET_PROMEDIO_SUCURSAL",
       "nombre": "Evaluar eficiencia de ticket por sucursal",
@@ -411,12 +408,12 @@
       "consulta_sugerida": "Q3",
       "limite_defecto": 1
     },
-    "INTE-9556D63E80E9": {
+    "INTE-1B8BF1BB34B4": {
       "__clase__": "IntencionComparativa",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-9556D63E80E9",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-1B8BF1BB34B4",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_REDUCCION_VOLUMEN_SEGMENTO",
       "nombre": "Detectar contracción de compra por segmento",
@@ -432,12 +429,12 @@
       "consulta_sugerida": "Q4",
       "tipo_comparacion": "PERIODOS"
     },
-    "INTE-FB5D3ADC31A0": {
+    "INTE-25AEE0A03166": {
       "__clase__": "IntencionRanking",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-FB5D3ADC31A0",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-25AEE0A03166",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_CANAL_MAYOR_VENTA",
       "nombre": "Determinar canal de mayor concentración de venta",
@@ -452,12 +449,12 @@
       "consulta_sugerida": "Q5",
       "limite_defecto": 1
     },
-    "INTE-37475AC80964": {
+    "INTE-B2C44072EAEC": {
       "__clase__": "IntencionComparativa",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-37475AC80964",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-B2C44072EAEC",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_COMPARAR_MARGEN_CANALES",
       "nombre": "Comparativa mensual de margen entre canales",
@@ -474,12 +471,12 @@
       "consulta_sugerida": "Q6",
       "tipo_comparacion": "CANALES"
     },
-    "INTE-7E0FA9E3A916": {
+    "INTE-B0FA09886BB0": {
       "__clase__": "IntencionLiderazgo",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-7E0FA9E3A916",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-B0FA09886BB0",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_LIDER_VENTAS_CATEGORIA",
       "nombre": "Producto líder por categoría",
@@ -495,12 +492,12 @@
       ],
       "consulta_sugerida": "Q7"
     },
-    "INTE-7124D024DB65": {
+    "INTE-25FD716670B4": {
       "__clase__": "IntencionAgregacion",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-7124D024DB65",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-25FD716670B4",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_MARGEN_PCT_CATEGORIA",
       "nombre": "Rentabilidad porcentual por categoría",
@@ -514,12 +511,12 @@
       ],
       "consulta_sugerida": "Q8"
     },
-    "INTE-67DFE36B55D5": {
+    "INTE-EB25B9712CB6": {
       "__clase__": "IntencionRanking",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-67DFE36B55D5",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-EB25B9712CB6",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_TOP_CLIENTES",
       "nombre": "Top N clientes por ingreso neto",
@@ -534,12 +531,12 @@
       "consulta_sugerida": "Q9",
       "limite_defecto": 10
     },
-    "INTE-0C9168BDF067": {
+    "INTE-6DF414637B7C": {
       "__clase__": "IntencionAgregacion",
       "__modulo__": "bdoo.model.intencion",
-      "oid": "INTE-0C9168BDF067",
-      "fecha_creacion": "2026-10-29T22:20:52.804202",
-      "fecha_modificacion": "2026-10-29T22:20:52.804202",
+      "oid": "INTE-6DF414637B7C",
+      "fecha_creacion": "2026-10-29T22:22:59.168820",
+      "fecha_modificacion": "2026-10-29T22:22:59.168820",
       "version": 1,
       "codigo": "INT_DESCUENTO_CANAL",
       "nombre": "Impacto de descuentos por canal",
@@ -554,12 +551,12 @@
       ],
       "consulta_sugerida": "Q10"
     },
-    "USUA-297BC283A22D": {
+    "USUA-64F4614FA393": {
       "__clase__": "UsuarioGerencial",
       "__modulo__": "bdoo.model.usuario",
-      "oid": "USUA-297BC283A22D",
-      "fecha_creacion": "2026-10-29T22:20:52.820854",
-      "fecha_modificacion": "2026-10-29T22:20:52.820854",
+      "oid": "USUA-64F4614FA393",
+      "fecha_creacion": "2026-10-29T22:22:59.182448",
+      "fecha_modificacion": "2026-10-29T22:22:59.182448",
       "version": 1,
       "id_usuario": "USR-GER-01",
       "nombre": "Dra. Mariana Rossi",
@@ -571,103 +568,90 @@
       "nivel_acceso": "DIRECTIVO",
       "autoriza_descuentos": true
     },
-    "SESI-2787D3EDB868": {
+    "SESI-85555F07EB6D": {
       "__clase__": "Sesion",
       "__modulo__": "bdoo.model.sesion",
-      "oid": "SESI-2787D3EDB868",
-      "fecha_creacion": "2026-10-29T22:20:52.820854",
-      "fecha_modificacion": "2026-10-29T22:20:54.371070",
-      "version": 34,
+      "oid": "SESI-85555F07EB6D",
+      "fecha_creacion": "2026-10-29T22:22:59.182448",
+      "fecha_modificacion": "2026-10-29T22:23:08.882100",
+      "version": 4,
       "id_sesion": "SES-DEF-001",
-      "usuario_oid": "USUA-297BC283A22D",
+      "usuario_oid": "USUA-64F4614FA393",
       "usuario_id": "USR-GER-01",
       "estado": "ACTIVA",
       "fecha_fin": null,
       "preguntas_oids": [
-        "PREG-9B1D0BCB5889",
-        "PREG-CE0E583BEC16",
-        "PREG-F9BE8252B3C3",
-        "PREG-4D2135CCA5BA",
-        "PREG-723BED08A476",
-        "PREG-F59B71065E9A",
-        "PREG-10745C90937F",
-        "PREG-8EBB6463A337",
-        "PREG-AADBA1334F77",
-        "PREG-CBD63D1532C2",
-        "PREG-B64D7176E0DC",
-        "PREG-3ABBCF5846A5",
-        "PREG-F791EB64CB42"
+        "PREG-B9F65B52FD08"
       ],
-      "total_preguntas": 13,
+      "total_preguntas": 1,
       "contexto_conversacional": {
-        "ultimo_desde": "2099-01-01",
-        "ultimo_hasta": "2099-12-31",
-        "ultima_categoria": "CategoriaInexistenteXYZ"
+        "ultimo_desde": "2026-04-03",
+        "ultimo_hasta": "2026-09-30"
       }
     },
-    "PREG-9B1D0BCB5889": {
+    "PREG-B9F65B52FD08": {
       "__clase__": "Pregunta",
       "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-9B1D0BCB5889",
-      "fecha_creacion": "2026-10-29T22:20:52.820854",
-      "fecha_modificacion": "2026-10-29T22:20:52.820854",
+      "oid": "PREG-B9F65B52FD08",
+      "fecha_creacion": "2026-10-29T22:23:08.878293",
+      "fecha_modificacion": "2026-10-29T22:23:08.882100",
       "version": 5,
       "texto_pregunta": "¿Cuál fue el ingreso neto por mes?",
       "filtros_detectados": {
         "desde": "2026-04-03",
         "hasta": "2026-09-30"
       },
-      "intencion_oid": "INTE-798D05987F22",
-      "consulta_oid": "CONS-32B5B179AD52",
-      "resultado_oid": "RESU-FA7092F48412",
-      "respuesta_oid": "RESP-21E131372B24",
+      "intencion_oid": "INTE-492694054F34",
+      "consulta_oid": "CONS-E212054DDC5A",
+      "resultado_oid": "RESU-C6D227B69EAA",
+      "respuesta_oid": "RESP-659D067504FD",
       "estado": "RESPONDIDA",
       "es_ambigua": false,
       "es_fuera_de_alcance": false,
       "motivo_error": null
     },
-    "REGL-3AABB087DAF1": {
+    "REGL-0F50ADDFA8C0": {
       "__clase__": "ReglaSeguridadSQL",
       "__modulo__": "bdoo.model.regla_validacion",
-      "oid": "REGL-3AABB087DAF1",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "REGL-0F50ADDFA8C0",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "REG_SEGURIDAD_SQL",
       "nombre": "Seguridad y Autorización de Consultas",
       "descripcion": "Bloquea operaciones destructivas o acceso a tablas operacionales del sistema de origen.",
       "severidad": "BLOCKING"
     },
-    "REGL-A1CC84EA32DE": {
+    "REGL-EDF2E87C5B2E": {
       "__clase__": "ReglaCoherenciaPeriodo",
       "__modulo__": "bdoo.model.regla_validacion",
-      "oid": "REGL-A1CC84EA32DE",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "REGL-EDF2E87C5B2E",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "REG_COHERENCIA_PERIODO",
       "nombre": "Validación de Consistencia Temporal",
       "descripcion": "Asegura que el rango de fechas sea cronológicamente válido y respete formato ISO.",
       "severidad": "BLOCKING"
     },
-    "REGL-9E3FAA2B11C8": {
+    "REGL-9F6C8B1DF9A6": {
       "__clase__": "ReglaNoVacio",
       "__modulo__": "bdoo.model.regla_validacion",
-      "oid": "REGL-9E3FAA2B11C8",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
+      "oid": "REGL-9F6C8B1DF9A6",
+      "fecha_creacion": "2026-10-29T22:22:59.150568",
+      "fecha_modificacion": "2026-10-29T22:22:59.150568",
       "version": 1,
       "codigo": "REG_NO_VACIO",
       "nombre": "Control de Registros Existentes",
       "descripcion": "Verifica si la consulta obtuvo registros en el periodo/filtros solicitados sin falsear a cero.",
       "severidad": "WARNING"
     },
-    "RESU-FA7092F48412": {
+    "RESU-C6D227B69EAA": {
       "__clase__": "ResultadoConsulta",
       "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-FA7092F48412",
-      "fecha_creacion": "2026-10-29T22:20:52.820854",
-      "fecha_modificacion": "2026-10-29T22:20:52.820854",
+      "oid": "RESU-C6D227B69EAA",
+      "fecha_creacion": "2026-10-29T22:23:08.882100",
+      "fecha_modificacion": "2026-10-29T22:23:08.882100",
       "version": 1,
       "consulta_codigo": "Q1",
       "columnas": [
@@ -714,7 +698,7 @@
           7335.41
         ]
       ],
-      "tiempo_ejecucion_ms": 0.77,
+      "tiempo_ejecucion_ms": 1.29,
       "total_registros": 6,
       "parametros_aplicados": {
         "desde": "2026-04-03",
@@ -723,12 +707,12 @@
       "exitoso": true,
       "mensaje_error": null
     },
-    "RESP-21E131372B24": {
+    "RESP-659D067504FD": {
       "__clase__": "RespuestaAgente",
       "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-21E131372B24",
-      "fecha_creacion": "2026-10-29T22:20:52.820854",
-      "fecha_modificacion": "2026-10-29T22:20:52.820854",
+      "oid": "RESP-659D067504FD",
+      "fecha_creacion": "2026-10-29T22:23:08.882100",
+      "fecha_modificacion": "2026-10-29T22:23:08.882100",
       "version": 1,
       "texto_interpretacion": "Se evaluó el ingreso neto mensual durante el periodo analizado (6 meses registrados). El periodo inició con un ingreso de $5,328.97 en Abril 2026 y cerró con $7,335.41 en Septiembre 2026.",
       "resultado_cuantitativo": [
@@ -783,1098 +767,6 @@
       "consulta_utilizada": "Q1",
       "advertencias": [],
       "valida": true
-    },
-    "PREG-CE0E583BEC16": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-CE0E583BEC16",
-      "fecha_creacion": "2026-10-29T22:20:52.854134",
-      "fecha_modificacion": "2026-10-29T22:20:52.854134",
-      "version": 5,
-      "texto_pregunta": "¿Cuáles son las cinco categorías con mayor margen bruto?",
-      "filtros_detectados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 5
-      },
-      "intencion_oid": "INTE-6A04FAC1E735",
-      "consulta_oid": "CONS-B16E426BBFF1",
-      "resultado_oid": "RESU-0199EDB64888",
-      "respuesta_oid": "RESP-09D0A4467C5A",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "REGL-71ABB71C25AA": {
-      "__clase__": "ReglaMargenValido",
-      "__modulo__": "bdoo.model.regla_validacion",
-      "oid": "REGL-71ABB71C25AA",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
-      "version": 1,
-      "codigo": "REG_MARGEN_VALIDO",
-      "nombre": "Auditoría de Margen y Costo",
-      "descripcion": "Detecta presencia de valores nulos en costos que puedan distorsionar el margen bruto.",
-      "severidad": "INFO"
-    },
-    "REGL-1366B40D778C": {
-      "__clase__": "ReglaFiltroDesconocido",
-      "__modulo__": "bdoo.model.regla_validacion",
-      "oid": "REGL-1366B40D778C",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
-      "version": 1,
-      "codigo": "REG_FILTRO_DESCONOCIDO",
-      "nombre": "Exclusión de Registros Centinela",
-      "descripcion": "Garantiza que sk = -1 (Desconocido) no participe en rankings directos.",
-      "severidad": "INFO"
-    },
-    "RESU-0199EDB64888": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-0199EDB64888",
-      "fecha_creacion": "2026-10-29T22:20:52.854134",
-      "fecha_modificacion": "2026-10-29T22:20:52.854134",
-      "version": 1,
-      "consulta_codigo": "Q2",
-      "columnas": [
-        "categoria",
-        "margen_bruto"
-      ],
-      "filas": [
-        [
-          "Deportes",
-          6952.59
-        ],
-        [
-          "Ropa",
-          4355.98
-        ],
-        [
-          "Electronica",
-          3644.69
-        ],
-        [
-          "Hogar",
-          2642.01
-        ],
-        [
-          "Juguetes",
-          1996.09
-        ]
-      ],
-      "tiempo_ejecucion_ms": 1.23,
-      "total_registros": 5,
-      "parametros_aplicados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 5
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-09D0A4467C5A": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-09D0A4467C5A",
-      "fecha_creacion": "2026-10-29T22:20:52.854134",
-      "fecha_modificacion": "2026-10-29T22:20:52.854134",
-      "version": 1,
-      "texto_interpretacion": "En el ranking de margen bruto comercial, la categoría líder es 'Deportes' con un margen bruto acumulado de $6,952.59 en el periodo evaluado.",
-      "resultado_cuantitativo": [
-        {
-          "categoria": "Deportes",
-          "margen_bruto": 6952.59
-        },
-        {
-          "categoria": "Ropa",
-          "margen_bruto": 4355.98
-        },
-        {
-          "categoria": "Electronica",
-          "margen_bruto": 3644.69
-        },
-        {
-          "categoria": "Hogar",
-          "margen_bruto": 2642.01
-        },
-        {
-          "categoria": "Juguetes",
-          "margen_bruto": 1996.09
-        }
-      ],
-      "metrica_utilizada": "margen_bruto",
-      "regla_calculo": "Margen bruto = SUM(ingreso_neto - costo_total) donde costo IS NOT NULL",
-      "periodo_aplicado": "2026-04-03 a 2026-09-30",
-      "filtros_aplicados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 5
-      },
-      "dimension_analizada": "DimProducto",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q2",
-      "advertencias": [
-        "Nota metodológica: El margen bruto se calcula únicamente sobre productos con costo unitario conocido. Las líneas de productos sin costo registrado se excluyen de la métrica de rentabilidad.",
-        "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1)."
-      ],
-      "valida": true
-    },
-    "PREG-F9BE8252B3C3": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-F9BE8252B3C3",
-      "fecha_creacion": "2026-10-29T22:20:52.887523",
-      "fecha_modificacion": "2026-10-29T22:20:52.887523",
-      "version": 5,
-      "texto_pregunta": "¿Qué sucursal presenta el ticket promedio más alto?",
-      "filtros_detectados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "intencion_oid": "INTE-CC681878CC98",
-      "consulta_oid": "CONS-B7BF4BDF91AC",
-      "resultado_oid": "RESU-73A61B3D3B7E",
-      "respuesta_oid": "RESP-CD03CB50275A",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "RESU-73A61B3D3B7E": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-73A61B3D3B7E",
-      "fecha_creacion": "2026-10-29T22:20:52.887523",
-      "fecha_modificacion": "2026-10-29T22:20:52.887523",
-      "version": 1,
-      "consulta_codigo": "Q3",
-      "columnas": [
-        "sucursal",
-        "tickets",
-        "ticket_promedio"
-      ],
-      "filas": [
-        [
-          "Sucursal Norte",
-          57,
-          198.0
-        ]
-      ],
-      "tiempo_ejecucion_ms": 0.96,
-      "total_registros": 1,
-      "parametros_aplicados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-CD03CB50275A": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-CD03CB50275A",
-      "fecha_creacion": "2026-10-29T22:20:52.887523",
-      "fecha_modificacion": "2026-10-29T22:20:52.887523",
-      "version": 1,
-      "texto_interpretacion": "La sucursal con el ticket promedio más alto es 'Sucursal Norte' alcanzando un promedio de $198.00 por transacción sobre un total de 57 tickets.",
-      "resultado_cuantitativo": [
-        {
-          "sucursal": "Sucursal Norte",
-          "tickets": 57,
-          "ticket_promedio": 198.0
-        }
-      ],
-      "metrica_utilizada": "ticket_promedio",
-      "regla_calculo": "Ticket promedio = SUM(ingreso_neto) / COUNT(DISTINCT numero_ticket)",
-      "periodo_aplicado": "2026-04-03 a 2026-09-30",
-      "filtros_aplicados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "dimension_analizada": "DimSucursal",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q3",
-      "advertencias": [
-        "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1).",
-        "Periodo no explicitado en la pregunta. Se asume automáticamente el periodo completo disponible en el Data Mart (2026-04-03 a 2026-09-30)."
-      ],
-      "valida": true
-    },
-    "PREG-4D2135CCA5BA": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-4D2135CCA5BA",
-      "fecha_creacion": "2026-10-29T22:20:52.937396",
-      "fecha_modificacion": "2026-10-29T22:20:52.937396",
-      "version": 5,
-      "texto_pregunta": "¿Qué canal concentra el mayor valor de ventas?",
-      "filtros_detectados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "intencion_oid": "INTE-FB5D3ADC31A0",
-      "consulta_oid": "CONS-543F90C0D283",
-      "resultado_oid": "RESU-C83C9392469B",
-      "respuesta_oid": "RESP-49496D44DC4D",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "REGL-EB9358EAA673": {
-      "__clase__": "ReglaAmbiguedadCriterio",
-      "__modulo__": "bdoo.model.regla_validacion",
-      "oid": "REGL-EB9358EAA673",
-      "fecha_creacion": "2026-10-29T22:20:52.787425",
-      "fecha_modificacion": "2026-10-29T22:20:52.787425",
-      "version": 1,
-      "codigo": "REG_AMBIGUEDAD_CRITERIO",
-      "nombre": "Explicitación de Criterio Analítico",
-      "descripcion": "Explicita el criterio cuantitativo adoptado ante términos ambiguos como 'mejor' o 'superior'.",
-      "severidad": "INFO",
-      "criterio_explicitado": "Ingreso Neto"
-    },
-    "RESU-C83C9392469B": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-C83C9392469B",
-      "fecha_creacion": "2026-10-29T22:20:52.937396",
-      "fecha_modificacion": "2026-10-29T22:20:52.937396",
-      "version": 1,
-      "consulta_codigo": "Q5",
-      "columnas": [
-        "canal",
-        "ingreso_neto"
-      ],
-      "filas": [
-        [
-          "Tienda Fisica",
-          21498.06
-        ]
-      ],
-      "tiempo_ejecucion_ms": 0.83,
-      "total_registros": 1,
-      "parametros_aplicados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-49496D44DC4D": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-49496D44DC4D",
-      "fecha_creacion": "2026-10-29T22:20:52.937396",
-      "fecha_modificacion": "2026-10-29T22:20:52.937396",
-      "version": 1,
-      "texto_interpretacion": "El canal de ventas que concentra el mayor valor es 'Tienda Fisica' con un ingreso neto consolidado de $21,498.06.",
-      "resultado_cuantitativo": [
-        {
-          "canal": "Tienda Fisica",
-          "ingreso_neto": 21498.06
-        }
-      ],
-      "metrica_utilizada": "ingreso_neto",
-      "regla_calculo": "Ingreso neto = SUM(ingreso_neto)",
-      "periodo_aplicado": "2026-04-03 a 2026-09-30",
-      "filtros_aplicados": {
-        "desde": "2026-04-03",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "dimension_analizada": "DimCanal",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q5",
-      "advertencias": [
-        "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1).",
-        "Aclaración de ambigüedad: Se adoptó 'Ingreso Neto' como criterio de medición oficial."
-      ],
-      "valida": true
-    },
-    "PREG-723BED08A476": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-723BED08A476",
-      "fecha_creacion": "2026-10-29T22:20:53.020930",
-      "fecha_modificacion": "2026-10-29T22:20:53.020930",
-      "version": 5,
-      "texto_pregunta": "¿Qué producto lidera las ventas dentro de la categoría Electronica?",
-      "filtros_detectados": {
-        "categoria": "Electronica",
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30"
-      },
-      "intencion_oid": "INTE-7E0FA9E3A916",
-      "consulta_oid": "CONS-4FF147DC2846",
-      "resultado_oid": "RESU-B3CEE2C26B2D",
-      "respuesta_oid": "RESP-C9E1760FBF64",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "RESU-B3CEE2C26B2D": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-B3CEE2C26B2D",
-      "fecha_creacion": "2026-10-29T22:20:53.020930",
-      "fecha_modificacion": "2026-10-29T22:20:53.020930",
-      "version": 1,
-      "consulta_codigo": "Q7",
-      "columnas": [
-        "producto",
-        "unidades",
-        "ingreso_neto"
-      ],
-      "filas": [
-        [
-          "Teclado Mecanico",
-          40,
-          2170.19
-        ]
-      ],
-      "tiempo_ejecucion_ms": 0.74,
-      "total_registros": 1,
-      "parametros_aplicados": {
-        "categoria": "Electronica",
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30"
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-C9E1760FBF64": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-C9E1760FBF64",
-      "fecha_creacion": "2026-10-29T22:20:53.020930",
-      "fecha_modificacion": "2026-10-29T22:20:53.020930",
-      "version": 1,
-      "texto_interpretacion": "Para la categoría 'Electronica', el producto líder en ventas es 'Teclado Mecanico' con 40 unidades vendidas y un ingreso neto total de $2,170.19.",
-      "resultado_cuantitativo": [
-        {
-          "producto": "Teclado Mecanico",
-          "unidades": 40,
-          "ingreso_neto": 2170.19
-        }
-      ],
-      "metrica_utilizada": "ingreso_neto, unidades",
-      "regla_calculo": "Liderazgo medido por mayor ingreso neto total (y conteo de unidades)",
-      "periodo_aplicado": "2026-07-01 a 2026-09-30",
-      "filtros_aplicados": {
-        "categoria": "Electronica",
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30"
-      },
-      "dimension_analizada": "DimProducto, DimTiempo",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q7",
-      "advertencias": [],
-      "valida": true
-    },
-    "PREG-F59B71065E9A": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-F59B71065E9A",
-      "fecha_creacion": "2026-10-29T22:20:53.140014",
-      "fecha_modificacion": "2026-10-29T22:20:53.143005",
-      "version": 5,
-      "texto_pregunta": "Compare el margen de dos canales durante los últimos tres meses disponibles.",
-      "filtros_detectados": {
-        "canal1": "Tienda Fisica",
-        "canal2": "Web",
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30"
-      },
-      "intencion_oid": "INTE-37475AC80964",
-      "consulta_oid": "CONS-66F7DE670E14",
-      "resultado_oid": "RESU-58A459EF957F",
-      "respuesta_oid": "RESP-5F86A86A81B6",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "RESU-58A459EF957F": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-58A459EF957F",
-      "fecha_creacion": "2026-10-29T22:20:53.142002",
-      "fecha_modificacion": "2026-10-29T22:20:53.142002",
-      "version": 1,
-      "consulta_codigo": "Q6",
-      "columnas": [
-        "canal",
-        "anio",
-        "mes",
-        "nombre_mes",
-        "margen_bruto",
-        "margen_pct"
-      ],
-      "filas": [
-        [
-          "Tienda Fisica",
-          2026,
-          7,
-          "Julio",
-          2206.23,
-          53.96
-        ],
-        [
-          "Web",
-          2026,
-          7,
-          "Julio",
-          1547.25,
-          55.15
-        ],
-        [
-          "Tienda Fisica",
-          2026,
-          8,
-          "Agosto",
-          1780.06,
-          54.75
-        ],
-        [
-          "Web",
-          2026,
-          8,
-          "Agosto",
-          870.52,
-          53.99
-        ],
-        [
-          "Tienda Fisica",
-          2026,
-          9,
-          "Septiembre",
-          2420.4,
-          54.37
-        ],
-        [
-          "Web",
-          2026,
-          9,
-          "Septiembre",
-          984.17,
-          56.3
-        ]
-      ],
-      "tiempo_ejecucion_ms": 1.51,
-      "total_registros": 6,
-      "parametros_aplicados": {
-        "canal1": "Tienda Fisica",
-        "canal2": "Web",
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30"
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-5F86A86A81B6": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-5F86A86A81B6",
-      "fecha_creacion": "2026-10-29T22:20:53.143005",
-      "fecha_modificacion": "2026-10-29T22:20:53.143005",
-      "version": 1,
-      "texto_interpretacion": "Se comparó el margen bruto y porcentual para los canales Tienda Fisica, Web a lo largo de los últimos tres meses disponibles. Los resultados reflejan la rentabilidad comparativa mes a mes.",
-      "resultado_cuantitativo": [
-        {
-          "canal": "Tienda Fisica",
-          "anio": 2026,
-          "mes": 7,
-          "nombre_mes": "Julio",
-          "margen_bruto": 2206.23,
-          "margen_pct": 53.96
-        },
-        {
-          "canal": "Web",
-          "anio": 2026,
-          "mes": 7,
-          "nombre_mes": "Julio",
-          "margen_bruto": 1547.25,
-          "margen_pct": 55.15
-        },
-        {
-          "canal": "Tienda Fisica",
-          "anio": 2026,
-          "mes": 8,
-          "nombre_mes": "Agosto",
-          "margen_bruto": 1780.06,
-          "margen_pct": 54.75
-        },
-        {
-          "canal": "Web",
-          "anio": 2026,
-          "mes": 8,
-          "nombre_mes": "Agosto",
-          "margen_bruto": 870.52,
-          "margen_pct": 53.99
-        },
-        {
-          "canal": "Tienda Fisica",
-          "anio": 2026,
-          "mes": 9,
-          "nombre_mes": "Septiembre",
-          "margen_bruto": 2420.4,
-          "margen_pct": 54.37
-        },
-        {
-          "canal": "Web",
-          "anio": 2026,
-          "mes": 9,
-          "nombre_mes": "Septiembre",
-          "margen_bruto": 984.17,
-          "margen_pct": 56.3
-        }
-      ],
-      "metrica_utilizada": "margen_bruto, margen_pct",
-      "regla_calculo": "Margen % = SUM(margen_bruto) * 100.0 / SUM(ingreso_neto) (no se promedian porcentajes)",
-      "periodo_aplicado": "2026-07-01 a 2026-09-30",
-      "filtros_aplicados": {
-        "canal1": "Tienda Fisica",
-        "canal2": "Web",
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30"
-      },
-      "dimension_analizada": "DimCanal, DimTiempo",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q6",
-      "advertencias": [
-        "Nota metodológica: El margen bruto se calcula únicamente sobre productos con costo unitario conocido. Las líneas de productos sin costo registrado se excluyen de la métrica de rentabilidad."
-      ],
-      "valida": true
-    },
-    "PREG-10745C90937F": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-10745C90937F",
-      "fecha_creacion": "2026-10-29T22:20:53.287634",
-      "fecha_modificacion": "2026-10-29T22:20:53.287634",
-      "version": 5,
-      "texto_pregunta": "¿Qué segmento de clientes redujo más su volumen de compra?",
-      "filtros_detectados": {
-        "a_desde": "2026-04-01",
-        "a_hasta": "2026-06-30",
-        "b_desde": "2026-07-01",
-        "b_hasta": "2026-09-30"
-      },
-      "intencion_oid": "INTE-9556D63E80E9",
-      "consulta_oid": "CONS-0C5D16AB4AEC",
-      "resultado_oid": "RESU-5692E66AF315",
-      "respuesta_oid": "RESP-9A9C273E774D",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "RESU-5692E66AF315": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-5692E66AF315",
-      "fecha_creacion": "2026-10-29T22:20:53.287634",
-      "fecha_modificacion": "2026-10-29T22:20:53.287634",
-      "version": 1,
-      "consulta_codigo": "Q4",
-      "columnas": [
-        "segmento",
-        "volumen_a",
-        "volumen_b",
-        "variacion"
-      ],
-      "filas": [
-        [
-          "Ocasional",
-          63,
-          50,
-          -13
-        ],
-        [
-          "Regular",
-          130,
-          137,
-          7
-        ],
-        [
-          "Premium",
-          188,
-          332,
-          144
-        ]
-      ],
-      "tiempo_ejecucion_ms": 1.0,
-      "total_registros": 3,
-      "parametros_aplicados": {
-        "a_desde": "2026-04-01",
-        "a_hasta": "2026-06-30",
-        "b_desde": "2026-07-01",
-        "b_hasta": "2026-09-30"
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-9A9C273E774D": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-9A9C273E774D",
-      "fecha_creacion": "2026-10-29T22:20:53.287634",
-      "fecha_modificacion": "2026-10-29T22:20:53.287634",
-      "version": 1,
-      "texto_interpretacion": "El análisis comparativo entre periodos muestra que el segmento 'Ocasional' presentó la mayor contracción en volumen de compra, con una variación de -13 unidades (de 63 a 50 unidades).",
-      "resultado_cuantitativo": [
-        {
-          "segmento": "Ocasional",
-          "volumen_a": 63,
-          "volumen_b": 50,
-          "variacion": -13
-        },
-        {
-          "segmento": "Regular",
-          "volumen_a": 130,
-          "volumen_b": 137,
-          "variacion": 7
-        },
-        {
-          "segmento": "Premium",
-          "volumen_a": 188,
-          "volumen_b": 332,
-          "variacion": 144
-        }
-      ],
-      "metrica_utilizada": "volumen, variacion",
-      "regla_calculo": "Variación = volumen_B - volumen_A (la cifra más negativa representa la mayor reducción)",
-      "periodo_aplicado": "Periodo A: 2026-04-01 a 2026-06-30 | Periodo B: 2026-07-01 a 2026-09-30",
-      "filtros_aplicados": {
-        "a_desde": "2026-04-01",
-        "a_hasta": "2026-06-30",
-        "b_desde": "2026-07-01",
-        "b_hasta": "2026-09-30"
-      },
-      "dimension_analizada": "DimCliente",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q4",
-      "advertencias": [
-        "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1)."
-      ],
-      "valida": true
-    },
-    "PREG-8EBB6463A337": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-8EBB6463A337",
-      "fecha_creacion": "2026-10-29T22:20:53.461751",
-      "fecha_modificacion": "2026-10-29T22:20:53.461751",
-      "version": 6,
-      "texto_pregunta": "¿Cuál fue el mejor canal?",
-      "filtros_detectados": {
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "intencion_oid": "INTE-FB5D3ADC31A0",
-      "consulta_oid": "CONS-543F90C0D283",
-      "resultado_oid": "RESU-C951103C2015",
-      "respuesta_oid": "RESP-585E080F8D8A",
-      "estado": "RESPONDIDA",
-      "es_ambigua": true,
-      "es_fuera_de_alcance": false,
-      "motivo_error": "El término 'mejor canal' es ambiguo (podría medirse por ingreso neto, margen bruto, volumen de tickets o unidades vendidas). El agente explicitó el criterio: Ingreso Neto."
-    },
-    "RESU-C951103C2015": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-C951103C2015",
-      "fecha_creacion": "2026-10-29T22:20:53.461751",
-      "fecha_modificacion": "2026-10-29T22:20:53.461751",
-      "version": 1,
-      "consulta_codigo": "Q5",
-      "columnas": [
-        "canal",
-        "ingreso_neto"
-      ],
-      "filas": [
-        [
-          "Tienda Fisica",
-          11791.05
-        ]
-      ],
-      "tiempo_ejecucion_ms": 0.75,
-      "total_registros": 1,
-      "parametros_aplicados": {
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-585E080F8D8A": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-585E080F8D8A",
-      "fecha_creacion": "2026-10-29T22:20:53.461751",
-      "fecha_modificacion": "2026-10-29T22:20:53.461751",
-      "version": 1,
-      "texto_interpretacion": "El canal de ventas que concentra el mayor valor es 'Tienda Fisica' con un ingreso neto consolidado de $11,791.05.",
-      "resultado_cuantitativo": [
-        {
-          "canal": "Tienda Fisica",
-          "ingreso_neto": 11791.05
-        }
-      ],
-      "metrica_utilizada": "ingreso_neto",
-      "regla_calculo": "Ingreso neto = SUM(ingreso_neto)",
-      "periodo_aplicado": "2026-07-01 a 2026-09-30",
-      "filtros_aplicados": {
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30",
-        "n": 1
-      },
-      "dimension_analizada": "DimCanal",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q5",
-      "advertencias": [
-        "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1).",
-        "Aclaración de ambigüedad: Se adoptó 'Ingreso Neto' como criterio de medición oficial.",
-        "El término 'mejor canal' es ambiguo (podría medirse por ingreso neto, margen bruto, volumen de tickets o unidades vendidas). El agente explicitó el criterio: Ingreso Neto.",
-        "Periodo no explicitado en la pregunta. Se asume automáticamente el periodo completo disponible en el Data Mart (2026-07-01 a 2026-09-30)."
-      ],
-      "valida": true
-    },
-    "PREG-AADBA1334F77": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-AADBA1334F77",
-      "fecha_creacion": "2026-10-29T22:20:53.623023",
-      "fecha_modificacion": "2026-10-29T22:20:53.638366",
-      "version": 5,
-      "texto_pregunta": "Cuáles son las categorías con mayor margen bruto",
-      "filtros_detectados": {
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30",
-        "n": 5
-      },
-      "intencion_oid": "INTE-6A04FAC1E735",
-      "consulta_oid": "CONS-B16E426BBFF1",
-      "resultado_oid": "RESU-FECEF900EF54",
-      "respuesta_oid": "RESP-7019A71AD8AA",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "RESU-FECEF900EF54": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-FECEF900EF54",
-      "fecha_creacion": "2026-10-29T22:20:53.638366",
-      "fecha_modificacion": "2026-10-29T22:20:53.638366",
-      "version": 1,
-      "consulta_codigo": "Q2",
-      "columnas": [
-        "categoria",
-        "margen_bruto"
-      ],
-      "filas": [
-        [
-          "Deportes",
-          4188.54
-        ],
-        [
-          "Electronica",
-          1946.62
-        ],
-        [
-          "Ropa",
-          1904.95
-        ],
-        [
-          "Hogar",
-          1559.38
-        ],
-        [
-          "Juguetes",
-          1224.6
-        ]
-      ],
-      "tiempo_ejecucion_ms": 1.6,
-      "total_registros": 5,
-      "parametros_aplicados": {
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30",
-        "n": 5
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-7019A71AD8AA": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-7019A71AD8AA",
-      "fecha_creacion": "2026-10-29T22:20:53.638366",
-      "fecha_modificacion": "2026-10-29T22:20:53.638366",
-      "version": 1,
-      "texto_interpretacion": "En el ranking de margen bruto comercial, la categoría líder es 'Deportes' con un margen bruto acumulado de $4,188.54 en el periodo evaluado.",
-      "resultado_cuantitativo": [
-        {
-          "categoria": "Deportes",
-          "margen_bruto": 4188.54
-        },
-        {
-          "categoria": "Electronica",
-          "margen_bruto": 1946.62
-        },
-        {
-          "categoria": "Ropa",
-          "margen_bruto": 1904.95
-        },
-        {
-          "categoria": "Hogar",
-          "margen_bruto": 1559.38
-        },
-        {
-          "categoria": "Juguetes",
-          "margen_bruto": 1224.6
-        }
-      ],
-      "metrica_utilizada": "margen_bruto",
-      "regla_calculo": "Margen bruto = SUM(ingreso_neto - costo_total) donde costo IS NOT NULL",
-      "periodo_aplicado": "2026-07-01 a 2026-09-30",
-      "filtros_aplicados": {
-        "desde": "2026-07-01",
-        "hasta": "2026-09-30",
-        "n": 5
-      },
-      "dimension_analizada": "DimProducto",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q2",
-      "advertencias": [
-        "Nota metodológica: El margen bruto se calcula únicamente sobre productos con costo unitario conocido. Las líneas de productos sin costo registrado se excluyen de la métrica de rentabilidad.",
-        "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1)."
-      ],
-      "valida": true
-    },
-    "PREG-CBD63D1532C2": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-CBD63D1532C2",
-      "fecha_creacion": "2026-10-29T22:20:53.804353",
-      "fecha_modificacion": "2026-10-29T22:20:53.804353",
-      "version": 3,
-      "texto_pregunta": "¿Cuál es el salario promedio y la nómina de los empleados?",
-      "filtros_detectados": {},
-      "intencion_oid": null,
-      "consulta_oid": null,
-      "resultado_oid": null,
-      "respuesta_oid": "RESP-9302FEBAF428",
-      "estado": "FUERA_DE_ALCANCE",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": true,
-      "motivo_error": "La solicitud requiere datos ajenos a las ventas comerciales de la organización."
-    },
-    "RESP-9302FEBAF428": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-9302FEBAF428",
-      "fecha_creacion": "2026-10-29T22:20:53.804353",
-      "fecha_modificacion": "2026-10-29T22:20:53.804353",
-      "version": 1,
-      "texto_interpretacion": "La pregunta formulada está fuera del alcance del Data Mart de Ventas. El sistema no inventa información ni realiza extrapolaciones no sustentadas en los datos oficiales.",
-      "resultado_cuantitativo": null,
-      "metrica_utilizada": "No aplicable",
-      "regla_calculo": "No disponible en el Data Mart",
-      "periodo_aplicado": "N/A",
-      "filtros_aplicados": {},
-      "dimension_analizada": "N/A",
-      "fuentes_consultadas": [
-        "Catálogo Oficial DataMart_Ventas"
-      ],
-      "consulta_utilizada": "NINGUNA (FUERA DE ALCANCE)",
-      "advertencias": [
-        "La solicitud requiere datos ajenos a las ventas comerciales de la organización."
-      ],
-      "valida": false
-    },
-    "PREG-B64D7176E0DC": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-B64D7176E0DC",
-      "fecha_creacion": "2026-10-29T22:20:53.972025",
-      "fecha_modificacion": "2026-10-29T22:20:53.972025",
-      "version": 3,
-      "texto_pregunta": "¿Cuál fue el ingreso neto agrupado por proveedor y temperatura?",
-      "filtros_detectados": {},
-      "intencion_oid": null,
-      "consulta_oid": null,
-      "resultado_oid": null,
-      "respuesta_oid": "RESP-11D5A5C2246D",
-      "estado": "ERROR",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": "La dimensión solicitada no forma parte del Data Mart dimensional de ventas."
-    },
-    "RESP-11D5A5C2246D": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-11D5A5C2246D",
-      "fecha_creacion": "2026-10-29T22:20:53.972025",
-      "fecha_modificacion": "2026-10-29T22:20:53.972025",
-      "version": 1,
-      "texto_interpretacion": "No es posible procesar la consulta: La dimensión solicitada no existe en el esquema estrella del Data Mart (dimensiones válidas: Tiempo, Cliente, Producto, Canal, Sucursal).",
-      "resultado_cuantitativo": null,
-      "metrica_utilizada": "N/A",
-      "regla_calculo": "N/A",
-      "periodo_aplicado": "N/A",
-      "filtros_aplicados": {},
-      "dimension_analizada": "Dimensión Inválida",
-      "fuentes_consultadas": [
-        "Esquema Estrella DataMart_Ventas"
-      ],
-      "consulta_utilizada": "NINGUNA (DIMENSIÓN INEXISTENTE)",
-      "advertencias": [
-        "La dimensión solicitada no forma parte del Data Mart dimensional de ventas."
-      ],
-      "valida": false
-    },
-    "PREG-3ABBCF5846A5": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-3ABBCF5846A5",
-      "fecha_creacion": "2026-10-29T22:20:54.172253",
-      "fecha_modificacion": "2026-10-29T22:20:54.172253",
-      "version": 5,
-      "texto_pregunta": "Mostrar ventas en una categoría inexistente en el año 2099 sin registros",
-      "filtros_detectados": {
-        "categoria": "CategoriaInexistenteXYZ",
-        "desde": "2099-01-01",
-        "hasta": "2099-12-31"
-      },
-      "intencion_oid": "INTE-7E0FA9E3A916",
-      "consulta_oid": "CONS-4FF147DC2846",
-      "resultado_oid": "RESU-6FB37AB1E9CC",
-      "respuesta_oid": "RESP-1928BD3875FC",
-      "estado": "RESPONDIDA",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": null
-    },
-    "RESU-6FB37AB1E9CC": {
-      "__clase__": "ResultadoConsulta",
-      "__modulo__": "bdoo.model.resultado_consulta",
-      "oid": "RESU-6FB37AB1E9CC",
-      "fecha_creacion": "2026-10-29T22:20:54.172253",
-      "fecha_modificacion": "2026-10-29T22:20:54.172253",
-      "version": 1,
-      "consulta_codigo": "Q7",
-      "columnas": [
-        "producto",
-        "unidades",
-        "ingreso_neto"
-      ],
-      "filas": [],
-      "tiempo_ejecucion_ms": 0.49,
-      "total_registros": 0,
-      "parametros_aplicados": {
-        "categoria": "CategoriaInexistenteXYZ",
-        "desde": "2099-01-01",
-        "hasta": "2099-12-31"
-      },
-      "exitoso": true,
-      "mensaje_error": null
-    },
-    "RESP-1928BD3875FC": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-1928BD3875FC",
-      "fecha_creacion": "2026-10-29T22:20:54.172253",
-      "fecha_modificacion": "2026-10-29T22:20:54.172253",
-      "version": 1,
-      "texto_interpretacion": "No se detectaron transacciones registradas en el Data Mart para la intención 'Producto líder por categoría' con los filtros especificados. No se asignan valores cero no justificados.",
-      "resultado_cuantitativo": "(Sin registros)",
-      "metrica_utilizada": "ingreso_neto, unidades",
-      "regla_calculo": "Liderazgo medido por mayor ingreso neto total (y conteo de unidades)",
-      "periodo_aplicado": "2099-01-01 a 2099-12-31",
-      "filtros_aplicados": {
-        "categoria": "CategoriaInexistenteXYZ",
-        "desde": "2099-01-01",
-        "hasta": "2099-12-31"
-      },
-      "dimension_analizada": "DimProducto, DimTiempo",
-      "fuentes_consultadas": [
-        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
-      ],
-      "consulta_utilizada": "Q7",
-      "advertencias": [
-        "La consulta 'Q7' no devolvió registros para los filtros especificados. Advertencia: No se infiere un valor de cero ya que no existe evidencia transaccional registrada."
-      ],
-      "valida": true
-    },
-    "PREG-F791EB64CB42": {
-      "__clase__": "Pregunta",
-      "__modulo__": "bdoo.model.pregunta",
-      "oid": "PREG-F791EB64CB42",
-      "fecha_creacion": "2026-10-29T22:20:54.371070",
-      "fecha_modificacion": "2026-10-29T22:20:54.371070",
-      "version": 3,
-      "texto_pregunta": "Ejecutar DROP TABLE FactVentas; o consultar src_ventas directamente",
-      "filtros_detectados": {},
-      "intencion_oid": null,
-      "consulta_oid": null,
-      "resultado_oid": null,
-      "respuesta_oid": "RESP-ED864D154DDE",
-      "estado": "ERROR",
-      "es_ambigua": false,
-      "es_fuera_de_alcance": false,
-      "motivo_error": "Operación denegada: Instrucción destructiva o acceso a tablas no autorizadas."
-    },
-    "RESP-ED864D154DDE": {
-      "__clase__": "RespuestaAgente",
-      "__modulo__": "bdoo.model.respuesta_agente",
-      "oid": "RESP-ED864D154DDE",
-      "fecha_creacion": "2026-10-29T22:20:54.371070",
-      "fecha_modificacion": "2026-10-29T22:20:54.371070",
-      "version": 1,
-      "texto_interpretacion": "Solicitud rechazada: Se ha detectado una operación no autorizada o un intento de acceder a estructuras operacionales no permitidas.",
-      "resultado_cuantitativo": null,
-      "metrica_utilizada": "Control de Seguridad de Consultas",
-      "regla_calculo": "Validación de políticas de acceso (solo lectura sobre Data Mart dimensional)",
-      "periodo_aplicado": "N/A",
-      "filtros_aplicados": {},
-      "dimension_analizada": "N/A",
-      "fuentes_consultadas": [
-        "Políticas de Seguridad BDOO"
-      ],
-      "consulta_utilizada": "BLOQUEADA POR REGLA DE SEGURIDAD",
-      "advertencias": [
-        "Operación denegada: Instrucción destructiva o acceso a tablas no autorizadas."
-      ],
-      "valida": false
     }
   }
 }
