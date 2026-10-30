@@ -1,0 +1,363 @@
+@startuml DiagramaClases_BDOO
+!theme plain
+skinparam classAttributeIconSize 0
+skinparam monochrome false
+skinparam shadowing false
+skinparam roundcorner 8
+skinparam classFontStyle bold
+
+title Diagrama de Clases - Componente B: Base de Datos Orientada a Objetos (BDOO)\nEvaluación Parcial 01 - Tópicos Especiales para la Gestión de Datos (Prof. Armen Djenanian)\nEquipo 04
+
+' =====================================================================
+' CLASE BASE DE PERSISTENCIA (ODMG-3.0)
+' =====================================================================
+abstract class EntidadPersistente {
+    # _oid: String {readOnly}
+    # _fecha_creacion: String
+    # _fecha_modificacion: String
+    # _version: Integer
+    + oid: String
+    + fecha_creacion: String
+    + fecha_modificacion: String
+    + version: Integer
+    + registrar_modificacion(): void
+    + {abstract} a_diccionario(): Dict
+    + __eq__(otro: Object): Boolean
+}
+
+' =====================================================================
+' USUARIOS Y POLIMORFISMO
+' =====================================================================
+class Usuario {
+    # _id_usuario: String
+    # _nombre: String
+    # _correo: String
+    # _rol: String
+    # _activo: Boolean
+    + id_usuario: String
+    + nombre: String
+    + correo: String
+    + rol: String
+    + activo: Boolean
+    + puede_ejecutar(operacion: String): Boolean
+    + activar(): void
+    + desactivar(): void
+}
+
+class UsuarioGerencial {
+    # _departamento: String
+    # _cargo: String
+    # _nivel_acceso: String
+    # _autoriza_descuentos: Boolean
+    + departamento: String
+    + cargo: String
+    + nivel_acceso: String
+    + autoriza_descuentos: Boolean
+    + puede_ejecutar(operacion: String): Boolean <<override>>
+}
+
+class UsuarioOperativo {
+    # _sucursal_asignada: String
+    # _canal_asignado: String
+    + sucursal_asignada: String
+    + canal_asignado: String
+    + puede_ejecutar(operacion: String): Boolean <<override>>
+}
+
+' =====================================================================
+' SESION Y CONTEXTO
+' =====================================================================
+class Sesion {
+    # _id_sesion: String
+    # _estado: String
+    # _fecha_fin: String
+    # _contexto_conversacional: Dict
+    + id_sesion: String
+    + estado: String
+    + fecha_fin: String
+    + agregar_pregunta(pregunta: Pregunta): void
+    + actualizar_contexto(clave: String, valor: Any): void
+    + obtener_contexto(clave: String, default: Any): Any
+    + finalizar_sesion(): void
+    + total_preguntas(): Integer
+}
+
+' =====================================================================
+' PREGUNTA Y TRAZABILIDAD
+' =====================================================================
+class Pregunta {
+    # _texto_pregunta: String
+    # _filtros_detectados: Dict
+    # _estado: String
+    # _es_ambigua: Boolean
+    # _es_fuera_de_alcance: Boolean
+    # _motivo_error: String
+    + texto_pregunta: String
+    + filtros_detectados: Dict
+    + estado: String
+    + es_ambigua: Boolean
+    + es_fuera_de_alcance: Boolean
+    + motivo_error: String
+    + asociar_intencion(intencion: Intencion, filtros: Dict): void
+    + asociar_consulta(consulta: ConsultaAnalitica): void
+    + registrar_resultado(resultado: ResultadoConsulta): void
+    + asignar_respuesta(respuesta: RespuestaAgente): void
+    + marcar_ambigua(motivo: String): void
+    + marcar_fuera_de_alcance(motivo: String): void
+    + marcar_error(motivo: String): void
+    + obtener_trazabilidad_completa(): Dict
+}
+
+' =====================================================================
+' INTENCIONES ANALITICAS
+' =====================================================================
+class Intencion {
+    # _codigo: String
+    # _nombre: String
+    # _descripcion: String
+    # _operacion_analitica: String
+    # _metricas_esperadas: List<String>
+    # _dimensiones_esperadas: List<String>
+    # _consulta_sugerida: String
+    + codigo: String
+    + nombre: String
+    + descripcion: String
+    + operacion_analitica: String
+    + validar_parametros(params: Dict): Tuple<Boolean, List<String>>
+    + describir_interpretacion(filtros: Dict): String
+}
+
+class IntencionRanking {
+    # _limite_defecto: Integer
+    + limite_defecto: Integer
+    + validar_parametros(params: Dict): Tuple<Boolean, List<String>> <<override>>
+}
+
+class IntencionTendencia {
+    + validar_parametros(params: Dict): Tuple<Boolean, List<String>> <<override>>
+}
+
+class IntencionComparativa {
+    # _tipo_comparacion: String
+    + tipo_comparacion: String
+    + validar_parametros(params: Dict): Tuple<Boolean, List<String>> <<override>>
+}
+
+class IntencionLiderazgo {
+    + validar_parametros(params: Dict): Tuple<Boolean, List<String>> <<override>>
+}
+
+class IntencionAgregacion {
+}
+
+' =====================================================================
+' FUENTE DE DATO ANALITICA
+' =====================================================================
+class FuenteDato {
+    # _id_fuente: String
+    # _nombre_data_mart: String
+    # _tabla_hechos: String
+    # _tablas_dimensiones: List<String>
+    # _campos_utilizados: List<String>
+    # _descripcion_grano: String
+    # _tipo_almacen: String
+    # _es_fuente_oficial: Boolean
+    + id_fuente: String
+    + nombre_data_mart: String
+    + tabla_hechos: String
+    + descripcion_grano: String
+    + verificar_campo_permitido(campo: String): Boolean
+    + obtener_resumen_fuente(): String
+}
+
+' =====================================================================
+' REGLAS DE VALIDACION (PATRON STRATEGY)
+' =====================================================================
+abstract class ReglaValidacion {
+    # _codigo: String
+    # _nombre: String
+    # _descripcion: String
+    # _severidad: String
+    + codigo: String
+    + nombre: String
+    + severidad: String
+    + {abstract} validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>>
+}
+
+class ReglaNoVacio {
+    + validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>> <<override>>
+}
+
+class ReglaMargenValido {
+    + validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>> <<override>>
+}
+
+class ReglaFiltroDesconocido {
+    + validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>> <<override>>
+}
+
+class ReglaSeguridadSQL {
+    + validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>> <<override>>
+}
+
+class ReglaCoherenciaPeriodo {
+    + validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>> <<override>>
+}
+
+class ReglaAmbiguedadCriterio {
+    # _criterio_explicitado: String
+    + criterio_explicitado: String
+    + validar(resultado: ResultadoConsulta, consulta: ConsultaAnalitica): Tuple<Boolean, List<String>> <<override>>
+}
+
+' =====================================================================
+' CONSULTA ANALITICA Y RESULTADO
+' =====================================================================
+class ConsultaAnalitica {
+    # _codigo: String
+    # _nombre: String
+    # _descripcion: String
+    # _plantilla_sql: String
+    # _parametros_esperados: List<String>
+    # _regla_calculo: String
+    + codigo: String
+    + nombre: String
+    + plantilla_sql: String
+    + regla_calculo: String
+    + agregar_regla(regla: ReglaValidacion): void
+    + ejecutar(conexion: Connection, parametros: Dict): ResultadoConsulta
+    + aplicar_reglas(resultado: ResultadoConsulta): Tuple<Boolean, List<String>>
+}
+
+class ResultadoConsulta {
+    # _consulta_codigo: String
+    # _columnas: List<String>
+    # _filas: List<List<Any>>
+    # _tiempo_ejecucion_ms: Float
+    # _total_registros: Integer
+    # _parametros_aplicados: Dict
+    # _exitoso: Boolean
+    # _mensaje_error: String
+    + consulta_codigo: String
+    + columnas: List<String>
+    + total_registros: Integer
+    + es_vacio(): Boolean
+    + a_lista_diccionarios(): List<Dict>
+    + obtener_columna(columna: String): List
+}
+
+' =====================================================================
+' RESPUESTA DEL AGENTE
+' =====================================================================
+class RespuestaAgente {
+    # _texto_interpretacion: String
+    # _resultado_cuantitativo: Any
+    # _metrica_utilizada: String
+    # _regla_calculo: String
+    # _periodo_aplicado: String
+    # _filtros_aplicados: Dict
+    # _dimension_analizada: String
+    # _fuentes_consultadas: List<String>
+    # _consulta_utilizada: String
+    # _advertencias: List<String>
+    # _valida: Boolean
+    + texto_interpretacion: String
+    + metrica_utilizada: String
+    + regla_calculo: String
+    + advertencias: List<String>
+    + valida: Boolean
+    + agregar_advertencia(mensaje: String): void
+    + formatear_informe_ejecutivo(): String
+}
+
+' =====================================================================
+' COORDINADOR AGENTE ANALITICO
+' =====================================================================
+class AgenteAnalitico {
+    # _nombre: String
+    # _version_agente: String
+    # _periodo_disponible: Dict
+    + nombre: String
+    + version_agente: String
+    + registrar_fuente(fuente: FuenteDato): void
+    + registrar_consulta(consulta: ConsultaAnalitica): void
+    + registrar_intencion(intencion: Intencion): void
+    + crear_sesion(usuario: Usuario, id_sesion: String): Sesion
+    + procesar_solicitud(texto: String, sesion: Sesion): RespuestaAgente
+}
+
+' =====================================================================
+' MOTOR DE PERSISTENCIA BDOO
+' =====================================================================
+class BDOOEngine {
+    # _ruta_archivo: Path
+    # _almacen_oid: Dict<String, EntidadPersistente>
+    # _extents: Dict<String, Set<String>>
+    # _en_transaccion: Boolean
+    + total_objetos: Integer
+    + iniciar_transaccion(): void
+    + guardar(objeto: EntidadPersistente): void
+    + guardar_grafo(raiz: EntidadPersistente): void
+    + commit(): void
+    + rollback(): void
+    + obtener_por_oid(oid: String): EntidadPersistente
+    + obtener_extent(clase: Class): List
+    + buscar(clase: Class, predicado: Function): List
+    + exportar_dump(ruta: Path): void
+}
+
+' =====================================================================
+' RELACIONES DE HERENCIA (ES UN)
+' =====================================================================
+EntidadPersistente <|-- Usuario
+EntidadPersistente <|-- Sesion
+EntidadPersistente <|-- Pregunta
+EntidadPersistente <|-- Intencion
+EntidadPersistente <|-- FuenteDato
+EntidadPersistente <|-- ReglaValidacion
+EntidadPersistente <|-- ConsultaAnalitica
+EntidadPersistente <|-- ResultadoConsulta
+EntidadPersistente <|-- RespuestaAgente
+EntidadPersistente <|-- AgenteAnalitico
+
+Usuario <|-- UsuarioGerencial
+Usuario <|-- UsuarioOperativo
+
+Intencion <|-- IntencionRanking
+Intencion <|-- IntencionTendencia
+Intencion <|-- IntencionComparativa
+Intencion <|-- IntencionLiderazgo
+Intencion <|-- IntencionAgregacion
+
+ReglaValidacion <|-- ReglaNoVacio
+ReglaValidacion <|-- ReglaMargenValido
+ReglaValidacion <|-- ReglaFiltroDesconocido
+ReglaValidacion <|-- ReglaSeguridadSQL
+ReglaValidacion <|-- ReglaCoherenciaPeriodo
+ReglaValidacion <|-- ReglaAmbiguedadCriterio
+
+' =====================================================================
+' RELACIONES DE ASOCIACIÓN, AGREGACIÓN Y COMPOSICIÓN
+' =====================================================================
+AgenteAnalitico "1" o-- "*" ConsultaAnalitica : catalogo
+AgenteAnalitico "1" o-- "*" Intencion : catalogo
+AgenteAnalitico "1" o-- "*" FuenteDato : fuentes
+AgenteAnalitico "1" o-- "*" Sesion : sesiones
+AgenteAnalitico --> BDOOEngine : utiliza persistencia
+
+Sesion "1" o-- "1" Usuario : iniciada por
+Sesion "1" *-- "*" Pregunta : compone interacciones
+
+Pregunta "1" --> "0..1" Intencion : identifica
+Pregunta "1" --> "0..1" ConsultaAnalitica : prepara
+Pregunta "1" --> "0..1" ResultadoConsulta : almacena
+Pregunta "1" --> "0..1" RespuestaAgente : produce
+
+ConsultaAnalitica "1" *-- "*" ReglaValidacion : evalúa polimórficamente
+ConsultaAnalitica "1" --> "1" FuenteDato : consulta
+ConsultaAnalitica ..> ResultadoConsulta : produce
+
+RespuestaAgente ..> FuenteDato : cita como fuente oficial
+BDOOEngine o-- "*" EntidadPersistente : gestiona por OID y Extents
+
+@enduml

@@ -1,0 +1,200 @@
+{
+  "titulo": "Evidencia de Sesión Completa - Componente B (Sección 8.4)",
+  "sesion_id": "SES-2026-001",
+  "usuario": {
+    "__clase__": "UsuarioGerencial",
+    "__modulo__": "bdoo.model.usuario",
+    "oid": "USUA-9786A3A2F27E",
+    "fecha_creacion": "2026-10-29T22:01:29.562544",
+    "fecha_modificacion": "2026-10-29T22:01:29.562544",
+    "version": 1,
+    "id_usuario": "USR-GER-01",
+    "nombre": "Dra. Mariana Rossi",
+    "correo": "m.rossi@comercial.com",
+    "rol": "GERENCIAL",
+    "activo": true,
+    "departamento": "Dirección Comercial y Estrategia",
+    "cargo": "Directora General de Operaciones",
+    "nivel_acceso": "DIRECTIVO",
+    "autoriza_descuentos": true
+  },
+  "total_interacciones": 13,
+  "ejemplo_interaccion_completa": {
+    "oid_pregunta": "PREG-6C51B2B85DC7",
+    "fecha": "2026-10-29T22:01:29.579438",
+    "texto_usuario": "¿Cuál fue el ingreso neto por mes?",
+    "estado": "RESPONDIDA",
+    "es_ambigua": false,
+    "es_fuera_de_alcance": false,
+    "filtros": {
+      "desde": "2026-04-03",
+      "hasta": "2026-09-30"
+    },
+    "intencion": {
+      "__clase__": "IntencionTendencia",
+      "__modulo__": "bdoo.model.intencion",
+      "oid": "INTE-5FB89DBC027D",
+      "fecha_creacion": "2026-10-29T22:01:29.545880",
+      "fecha_modificacion": "2026-10-29T22:01:29.545880",
+      "version": 1,
+      "codigo": "INT_VENTAS_MES",
+      "nombre": "Analizar evolución de ventas mensuales",
+      "descripcion": "Consulta el ingreso neto consolidado mes a mes.",
+      "operacion_analitica": "EVOLUCION_TEMPORAL",
+      "metricas_esperadas": [
+        "ingreso_neto"
+      ],
+      "dimensiones_esperadas": [
+        "DimTiempo"
+      ],
+      "consulta_sugerida": "Q1"
+    },
+    "consulta": {
+      "__clase__": "ConsultaAnalitica",
+      "__modulo__": "bdoo.model.consulta_analitica",
+      "oid": "CONS-373CE8247E6D",
+      "fecha_creacion": "2026-10-29T22:01:29.533716",
+      "fecha_modificacion": "2026-10-29T22:01:29.533716",
+      "version": 1,
+      "codigo": "Q1",
+      "nombre": "Ingreso neto por mes",
+      "descripcion": "Calcula el ingreso neto acumulado agrupado por año y mes.",
+      "plantilla_sql": "SELECT t.anio, t.mes, t.nombre_mes,\n               ROUND(SUM(f.ingreso_neto), 2) AS ingreso_neto\n        FROM FactVentas f\n        JOIN DimTiempo t ON t.sk_tiempo = f.sk_tiempo\n        WHERE t.fecha BETWEEN :desde AND :hasta\n        GROUP BY t.anio, t.mes, t.nombre_mes\n        ORDER BY t.anio, t.mes;",
+      "parametros_esperados": [
+        "desde",
+        "hasta"
+      ],
+      "fuente_dato_oid": "FUEN-C892A27EA320",
+      "regla_calculo": "Ingreso neto = SUM(ingreso_neto) = SUM(ingreso_bruto - descuento)",
+      "reglas_validacion_oids": [
+        "REGL-234C82B358BB",
+        "REGL-BD19BA83ECDA",
+        "REGL-99642AAAE983"
+      ]
+    },
+    "resultado": {
+      "__clase__": "ResultadoConsulta",
+      "__modulo__": "bdoo.model.resultado_consulta",
+      "oid": "RESU-AFE90449CF0C",
+      "fecha_creacion": "2026-10-29T22:01:29.581438",
+      "fecha_modificacion": "2026-10-29T22:01:29.581438",
+      "version": 1,
+      "consulta_codigo": "Q1",
+      "columnas": [
+        "anio",
+        "mes",
+        "nombre_mes",
+        "ingreso_neto"
+      ],
+      "filas": [
+        [
+          2026,
+          4,
+          "Abril",
+          5328.97
+        ],
+        [
+          2026,
+          5,
+          "Mayo",
+          4445.23
+        ],
+        [
+          2026,
+          6,
+          "Junio",
+          6712.69
+        ],
+        [
+          2026,
+          7,
+          "Julio",
+          7213.18
+        ],
+        [
+          2026,
+          8,
+          "Agosto",
+          5705.12
+        ],
+        [
+          2026,
+          9,
+          "Septiembre",
+          7335.41
+        ]
+      ],
+      "tiempo_ejecucion_ms": 0.78,
+      "total_registros": 6,
+      "parametros_aplicados": {
+        "desde": "2026-04-03",
+        "hasta": "2026-09-30"
+      },
+      "exitoso": true,
+      "mensaje_error": null
+    },
+    "respuesta": {
+      "__clase__": "RespuestaAgente",
+      "__modulo__": "bdoo.model.respuesta_agente",
+      "oid": "RESP-8221A2074053",
+      "fecha_creacion": "2026-10-29T22:01:29.581438",
+      "fecha_modificacion": "2026-10-29T22:01:29.581438",
+      "version": 1,
+      "texto_interpretacion": "Se evaluó el ingreso neto mensual durante el periodo analizado (6 meses registrados). El periodo inició con un ingreso de $5,328.97 en Abril 2026 y cerró con $7,335.41 en Septiembre 2026.",
+      "resultado_cuantitativo": [
+        {
+          "anio": 2026,
+          "mes": 4,
+          "nombre_mes": "Abril",
+          "ingreso_neto": 5328.97
+        },
+        {
+          "anio": 2026,
+          "mes": 5,
+          "nombre_mes": "Mayo",
+          "ingreso_neto": 4445.23
+        },
+        {
+          "anio": 2026,
+          "mes": 6,
+          "nombre_mes": "Junio",
+          "ingreso_neto": 6712.69
+        },
+        {
+          "anio": 2026,
+          "mes": 7,
+          "nombre_mes": "Julio",
+          "ingreso_neto": 7213.18
+        },
+        {
+          "anio": 2026,
+          "mes": 8,
+          "nombre_mes": "Agosto",
+          "ingreso_neto": 5705.12
+        },
+        {
+          "anio": 2026,
+          "mes": 9,
+          "nombre_mes": "Septiembre",
+          "ingreso_neto": 7335.41
+        }
+      ],
+      "metrica_utilizada": "ingreso_neto",
+      "regla_calculo": "Ingreso neto = SUM(ingreso_neto) = SUM(ingreso_bruto - descuento)",
+      "periodo_aplicado": "2026-04-03 a 2026-09-30",
+      "filtros_aplicados": {
+        "desde": "2026-04-03",
+        "hasta": "2026-09-30"
+      },
+      "dimension_analizada": "DimTiempo",
+      "fuentes_consultadas": [
+        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
+      ],
+      "consulta_utilizada": "Q1",
+      "advertencias": [],
+      "valida": true
+    },
+    "motivo_error": null
+  },
+  "informe_ejecutivo_formateado": "======================================================================\nINFORME EJECUTIVO ANALÍTICO - AGENTE IA\n======================================================================\nInterpretación Gerencial:\n  Se evaluó el ingreso neto mensual durante el periodo analizado (6 meses registrados). El periodo inició con un ingreso de $5,328.97 en Abril 2026 y cerró con $7,335.41 en Septiembre 2026.\n----------------------------------------------------------------------\nResultado Cuantitativo/Categórico:\n  {'anio': 2026, 'mes': 4, 'nombre_mes': 'Abril', 'ingreso_neto': 5328.97}\n  {'anio': 2026, 'mes': 5, 'nombre_mes': 'Mayo', 'ingreso_neto': 4445.23}\n  {'anio': 2026, 'mes': 6, 'nombre_mes': 'Junio', 'ingreso_neto': 6712.69}\n  {'anio': 2026, 'mes': 7, 'nombre_mes': 'Julio', 'ingreso_neto': 7213.18}\n  {'anio': 2026, 'mes': 8, 'nombre_mes': 'Agosto', 'ingreso_neto': 5705.12}\n  ... (6 registros totales)\n----------------------------------------------------------------------\nEvidencia Metodológica y Trazabilidad:\n  • Métrica utilizada: ingreso_neto\n  • Regla de cálculo:  Ingreso neto = SUM(ingreso_neto) = SUM(ingreso_bruto - descuento)\n  • Dimensión:         DimTiempo\n  • Periodo analizado: 2026-04-03 a 2026-09-30\n  • Filtros:           {'desde': '2026-04-03', 'hasta': '2026-09-30'}\n  • Fuentes Data Mart: DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]\n  • Consulta ejecutada:Q1\n======================================================================"
+}

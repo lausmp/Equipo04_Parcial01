@@ -1,0 +1,333 @@
+{
+  "descripcion": "Evidencia de los 10 objetos mínimos del Componente B almacenados en la BDOO",
+  "objetos_ejemplo": {
+    "AgenteAnalitico": {
+      "__clase__": "AgenteAnalitico",
+      "__modulo__": "bdoo.model.agente",
+      "oid": "AGEN-271A573DBA45",
+      "fecha_creacion": "2026-10-29T22:01:29.533716",
+      "fecha_modificacion": "2026-10-29T22:01:29.533716",
+      "version": 1,
+      "nombre": "Agente Analítico de Ventas - Equipo 04",
+      "version_agente": "1.0.0",
+      "total_consultas_catalogo": 11,
+      "total_intenciones_catalogo": 10,
+      "total_fuentes_datos": 1,
+      "periodo_disponible": {
+        "desde": "2026-04-03",
+        "hasta": "2026-09-30"
+      }
+    },
+    "Usuario": {
+      "__clase__": "UsuarioGerencial",
+      "__modulo__": "bdoo.model.usuario",
+      "oid": "USUA-9786A3A2F27E",
+      "fecha_creacion": "2026-10-29T22:01:29.562544",
+      "fecha_modificacion": "2026-10-29T22:01:29.562544",
+      "version": 1,
+      "id_usuario": "USR-GER-01",
+      "nombre": "Dra. Mariana Rossi",
+      "correo": "m.rossi@comercial.com",
+      "rol": "GERENCIAL",
+      "activo": true,
+      "departamento": "Dirección Comercial y Estrategia",
+      "cargo": "Directora General de Operaciones",
+      "nivel_acceso": "DIRECTIVO",
+      "autoriza_descuentos": true
+    },
+    "Sesion": {
+      "__clase__": "Sesion",
+      "__modulo__": "bdoo.model.sesion",
+      "oid": "SESI-ED5130392213",
+      "fecha_creacion": "2026-10-29T22:01:29.562544",
+      "fecha_modificacion": "2026-10-29T22:01:30.745682",
+      "version": 34,
+      "id_sesion": "SES-2026-001",
+      "usuario_oid": "USUA-9786A3A2F27E",
+      "usuario_id": "USR-GER-01",
+      "estado": "ACTIVA",
+      "fecha_fin": null,
+      "preguntas_oids": [
+        "PREG-6C51B2B85DC7",
+        "PREG-1D3F28FB8289",
+        "PREG-45B93EF2F361",
+        "PREG-123F2216017C",
+        "PREG-10D0F832D8DC",
+        "PREG-D1DD0A8CED71",
+        "PREG-84E74E4375AB",
+        "PREG-545A23C88253",
+        "PREG-2DF5A484CCD5",
+        "PREG-E5C09C19C0F3",
+        "PREG-2641A6AFACB1",
+        "PREG-6E653D7D53D6",
+        "PREG-371919F9119B"
+      ],
+      "total_preguntas": 13,
+      "contexto_conversacional": {
+        "ultimo_desde": "2099-01-01",
+        "ultimo_hasta": "2099-12-31",
+        "ultima_categoria": "CategoriaInexistenteXYZ"
+      }
+    },
+    "Pregunta": {
+      "__clase__": "Pregunta",
+      "__modulo__": "bdoo.model.pregunta",
+      "oid": "PREG-6C51B2B85DC7",
+      "fecha_creacion": "2026-10-29T22:01:29.579438",
+      "fecha_modificacion": "2026-10-29T22:01:29.581438",
+      "version": 5,
+      "texto_pregunta": "¿Cuál fue el ingreso neto por mes?",
+      "filtros_detectados": {
+        "desde": "2026-04-03",
+        "hasta": "2026-09-30"
+      },
+      "intencion_oid": "INTE-5FB89DBC027D",
+      "consulta_oid": "CONS-373CE8247E6D",
+      "resultado_oid": "RESU-AFE90449CF0C",
+      "respuesta_oid": "RESP-8221A2074053",
+      "estado": "RESPONDIDA",
+      "es_ambigua": false,
+      "es_fuera_de_alcance": false,
+      "motivo_error": null
+    },
+    "Intencion": {
+      "__clase__": "IntencionTendencia",
+      "__modulo__": "bdoo.model.intencion",
+      "oid": "INTE-5FB89DBC027D",
+      "fecha_creacion": "2026-10-29T22:01:29.545880",
+      "fecha_modificacion": "2026-10-29T22:01:29.545880",
+      "version": 1,
+      "codigo": "INT_VENTAS_MES",
+      "nombre": "Analizar evolución de ventas mensuales",
+      "descripcion": "Consulta el ingreso neto consolidado mes a mes.",
+      "operacion_analitica": "EVOLUCION_TEMPORAL",
+      "metricas_esperadas": [
+        "ingreso_neto"
+      ],
+      "dimensiones_esperadas": [
+        "DimTiempo"
+      ],
+      "consulta_sugerida": "Q1"
+    },
+    "ConsultaAnalitica": {
+      "__clase__": "ConsultaAnalitica",
+      "__modulo__": "bdoo.model.consulta_analitica",
+      "oid": "CONS-373CE8247E6D",
+      "fecha_creacion": "2026-10-29T22:01:29.533716",
+      "fecha_modificacion": "2026-10-29T22:01:29.533716",
+      "version": 1,
+      "codigo": "Q1",
+      "nombre": "Ingreso neto por mes",
+      "descripcion": "Calcula el ingreso neto acumulado agrupado por año y mes.",
+      "plantilla_sql": "SELECT t.anio, t.mes, t.nombre_mes,\n               ROUND(SUM(f.ingreso_neto), 2) AS ingreso_neto\n        FROM FactVentas f\n        JOIN DimTiempo t ON t.sk_tiempo = f.sk_tiempo\n        WHERE t.fecha BETWEEN :desde AND :hasta\n        GROUP BY t.anio, t.mes, t.nombre_mes\n        ORDER BY t.anio, t.mes;",
+      "parametros_esperados": [
+        "desde",
+        "hasta"
+      ],
+      "fuente_dato_oid": "FUEN-C892A27EA320",
+      "regla_calculo": "Ingreso neto = SUM(ingreso_neto) = SUM(ingreso_bruto - descuento)",
+      "reglas_validacion_oids": [
+        "REGL-234C82B358BB",
+        "REGL-BD19BA83ECDA",
+        "REGL-99642AAAE983"
+      ]
+    },
+    "ResultadoConsulta": {
+      "__clase__": "ResultadoConsulta",
+      "__modulo__": "bdoo.model.resultado_consulta",
+      "oid": "RESU-AFE90449CF0C",
+      "fecha_creacion": "2026-10-29T22:01:29.581438",
+      "fecha_modificacion": "2026-10-29T22:01:29.581438",
+      "version": 1,
+      "consulta_codigo": "Q1",
+      "columnas": [
+        "anio",
+        "mes",
+        "nombre_mes",
+        "ingreso_neto"
+      ],
+      "filas": [
+        [
+          2026,
+          4,
+          "Abril",
+          5328.97
+        ],
+        [
+          2026,
+          5,
+          "Mayo",
+          4445.23
+        ],
+        [
+          2026,
+          6,
+          "Junio",
+          6712.69
+        ],
+        [
+          2026,
+          7,
+          "Julio",
+          7213.18
+        ],
+        [
+          2026,
+          8,
+          "Agosto",
+          5705.12
+        ],
+        [
+          2026,
+          9,
+          "Septiembre",
+          7335.41
+        ]
+      ],
+      "tiempo_ejecucion_ms": 0.78,
+      "total_registros": 6,
+      "parametros_aplicados": {
+        "desde": "2026-04-03",
+        "hasta": "2026-09-30"
+      },
+      "exitoso": true,
+      "mensaje_error": null
+    },
+    "RespuestaAgente": {
+      "__clase__": "RespuestaAgente",
+      "__modulo__": "bdoo.model.respuesta_agente",
+      "oid": "RESP-8221A2074053",
+      "fecha_creacion": "2026-10-29T22:01:29.581438",
+      "fecha_modificacion": "2026-10-29T22:01:29.581438",
+      "version": 1,
+      "texto_interpretacion": "Se evaluó el ingreso neto mensual durante el periodo analizado (6 meses registrados). El periodo inició con un ingreso de $5,328.97 en Abril 2026 y cerró con $7,335.41 en Septiembre 2026.",
+      "resultado_cuantitativo": [
+        {
+          "anio": 2026,
+          "mes": 4,
+          "nombre_mes": "Abril",
+          "ingreso_neto": 5328.97
+        },
+        {
+          "anio": 2026,
+          "mes": 5,
+          "nombre_mes": "Mayo",
+          "ingreso_neto": 4445.23
+        },
+        {
+          "anio": 2026,
+          "mes": 6,
+          "nombre_mes": "Junio",
+          "ingreso_neto": 6712.69
+        },
+        {
+          "anio": 2026,
+          "mes": 7,
+          "nombre_mes": "Julio",
+          "ingreso_neto": 7213.18
+        },
+        {
+          "anio": 2026,
+          "mes": 8,
+          "nombre_mes": "Agosto",
+          "ingreso_neto": 5705.12
+        },
+        {
+          "anio": 2026,
+          "mes": 9,
+          "nombre_mes": "Septiembre",
+          "ingreso_neto": 7335.41
+        }
+      ],
+      "metrica_utilizada": "ingreso_neto",
+      "regla_calculo": "Ingreso neto = SUM(ingreso_neto) = SUM(ingreso_bruto - descuento)",
+      "periodo_aplicado": "2026-04-03 a 2026-09-30",
+      "filtros_aplicados": {
+        "desde": "2026-04-03",
+        "hasta": "2026-09-30"
+      },
+      "dimension_analizada": "DimTiempo",
+      "fuentes_consultadas": [
+        "DataMart_Ventas [Hechos: FactVentas | Dimensiones: DimTiempo, DimCliente, DimProducto, DimCanal, DimSucursal]"
+      ],
+      "consulta_utilizada": "Q1",
+      "advertencias": [],
+      "valida": true
+    },
+    "FuenteDato": {
+      "__clase__": "FuenteDato",
+      "__modulo__": "bdoo.model.fuente_dato",
+      "oid": "FUEN-C892A27EA320",
+      "fecha_creacion": "2026-10-29T22:01:29.533716",
+      "fecha_modificacion": "2026-10-29T22:01:29.533716",
+      "version": 1,
+      "id_fuente": "SRC_DATAMART_VENTAS",
+      "nombre_data_mart": "DataMart_Ventas",
+      "tabla_hechos": "FactVentas",
+      "tablas_dimensiones": [
+        "DimTiempo",
+        "DimCliente",
+        "DimProducto",
+        "DimCanal",
+        "DimSucursal"
+      ],
+      "campos_utilizados": [
+        "sk_tiempo",
+        "sk_cliente",
+        "sk_producto",
+        "sk_canal",
+        "sk_sucursal",
+        "numero_ticket",
+        "numero_linea",
+        "cantidad",
+        "precio_unitario",
+        "descuento",
+        "ingreso_bruto",
+        "ingreso_neto",
+        "costo_total",
+        "margen_bruto"
+      ],
+      "descripcion_grano": "Una fila representa una línea de producto vendida dentro de un ticket.",
+      "tipo_almacen": "SQLITE_DIMENSIONAL",
+      "es_fuente_oficial": true
+    },
+    "ReglaValidacion": [
+      {
+        "__clase__": "ReglaSeguridadSQL",
+        "__modulo__": "bdoo.model.regla_validacion",
+        "oid": "REGL-234C82B358BB",
+        "fecha_creacion": "2026-10-29T22:01:29.533716",
+        "fecha_modificacion": "2026-10-29T22:01:29.533716",
+        "version": 1,
+        "codigo": "REG_SEGURIDAD_SQL",
+        "nombre": "Seguridad y Autorización de Consultas",
+        "descripcion": "Bloquea operaciones destructivas o acceso a tablas operacionales del sistema de origen.",
+        "severidad": "BLOCKING"
+      },
+      {
+        "__clase__": "ReglaCoherenciaPeriodo",
+        "__modulo__": "bdoo.model.regla_validacion",
+        "oid": "REGL-BD19BA83ECDA",
+        "fecha_creacion": "2026-10-29T22:01:29.533716",
+        "fecha_modificacion": "2026-10-29T22:01:29.533716",
+        "version": 1,
+        "codigo": "REG_COHERENCIA_PERIODO",
+        "nombre": "Validación de Consistencia Temporal",
+        "descripcion": "Asegura que el rango de fechas sea cronológicamente válido y respete formato ISO.",
+        "severidad": "BLOCKING"
+      },
+      {
+        "__clase__": "ReglaNoVacio",
+        "__modulo__": "bdoo.model.regla_validacion",
+        "oid": "REGL-99642AAAE983",
+        "fecha_creacion": "2026-10-29T22:01:29.533716",
+        "fecha_modificacion": "2026-10-29T22:01:29.533716",
+        "version": 1,
+        "codigo": "REG_NO_VACIO",
+        "nombre": "Control de Registros Existentes",
+        "descripcion": "Verifica si la consulta obtuvo registros en el periodo/filtros solicitados sin falsear a cero.",
+        "severidad": "WARNING"
+      }
+    ]
+  }
+}

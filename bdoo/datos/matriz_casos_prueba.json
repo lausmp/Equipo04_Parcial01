@@ -1,0 +1,174 @@
+[
+  {
+    "id": "TC-01",
+    "categoria": "Pregunta Correcta 1",
+    "pregunta": "¿Cuál fue el ingreso neto por mes?",
+    "esperado": "Serie mensual de ingreso neto agrupada por año y mes.",
+    "consulta_ejecutada": "Q1",
+    "metrica": "ingreso_neto",
+    "advertencias": [],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-02",
+    "categoria": "Pregunta Correcta 2",
+    "pregunta": "¿Cuáles son las cinco categorías con mayor margen bruto?",
+    "esperado": "Ranking de las 5 mejores categorías por margen bruto.",
+    "consulta_ejecutada": "Q2",
+    "metrica": "margen_bruto",
+    "advertencias": [
+      "Nota metodológica: El margen bruto se calcula únicamente sobre productos con costo unitario conocido. Las líneas de productos sin costo registrado se excluyen de la métrica de rentabilidad.",
+      "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1)."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-03",
+    "categoria": "Pregunta Correcta 3",
+    "pregunta": "¿Qué sucursal presenta el ticket promedio más alto?",
+    "esperado": "Identificación de la sucursal con mayor ticket promedio.",
+    "consulta_ejecutada": "Q3",
+    "metrica": "ticket_promedio",
+    "advertencias": [
+      "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1).",
+      "Periodo no explicitado en la pregunta. Se asume automáticamente el periodo completo disponible en el Data Mart (2026-04-03 a 2026-09-30)."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-04",
+    "categoria": "Pregunta Correcta 4",
+    "pregunta": "¿Qué canal concentra el mayor valor de ventas?",
+    "esperado": "Canal con mayor ingreso neto acumulado.",
+    "consulta_ejecutada": "Q5",
+    "metrica": "ingreso_neto",
+    "advertencias": [
+      "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1).",
+      "Aclaración de ambigüedad: Se adoptó 'Ingreso Neto' como criterio de medición oficial."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-05",
+    "categoria": "Pregunta Correcta 5",
+    "pregunta": "¿Qué producto lidera las ventas dentro de la categoría Electronica?",
+    "esperado": "Producto con mayor facturación en la categoría y periodo.",
+    "consulta_ejecutada": "Q7",
+    "metrica": "ingreso_neto, unidades",
+    "advertencias": [],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-06",
+    "categoria": "Comparación 1 (Canales)",
+    "pregunta": "Compare el margen de dos canales durante los últimos tres meses disponibles.",
+    "esperado": "Comparativa mensual de margen bruto y porcentual para Tienda Fisica y Web.",
+    "consulta_ejecutada": "Q6",
+    "metrica": "margen_bruto, margen_pct",
+    "advertencias": [
+      "Nota metodológica: El margen bruto se calcula únicamente sobre productos con costo unitario conocido. Las líneas de productos sin costo registrado se excluyen de la métrica de rentabilidad."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-07",
+    "categoria": "Comparación 2 (Periodos)",
+    "pregunta": "¿Qué segmento de clientes redujo más su volumen de compra?",
+    "esperado": "Comparación de unidades entre periodo A y B ordenado por mayor caída.",
+    "consulta_ejecutada": "Q4",
+    "metrica": "volumen, variacion",
+    "advertencias": [
+      "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1)."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-08",
+    "categoria": "Pregunta Ambigua",
+    "pregunta": "¿Cuál fue el mejor canal?",
+    "esperado": "Explicitación del criterio adoptado (Ingreso Neto) y advertencia metodológica.",
+    "consulta_ejecutada": "Q5",
+    "metrica": "ingreso_neto",
+    "advertencias": [
+      "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1).",
+      "Aclaración de ambigüedad: Se adoptó 'Ingreso Neto' como criterio de medición oficial.",
+      "El término 'mejor canal' es ambiguo (podría medirse por ingreso neto, margen bruto, volumen de tickets o unidades vendidas). El agente explicitó el criterio: Ingreso Neto.",
+      "Periodo no explicitado en la pregunta. Se asume automáticamente el periodo completo disponible en el Data Mart (2026-07-01 a 2026-09-30)."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-09",
+    "categoria": "Pregunta sin periodo explícito",
+    "pregunta": "Cuáles son las categorías con mayor margen bruto",
+    "esperado": "Asume automáticamente el periodo histórico completo e inserta advertencia clara.",
+    "consulta_ejecutada": "Q2",
+    "metrica": "margen_bruto",
+    "advertencias": [
+      "Nota metodológica: El margen bruto se calcula únicamente sobre productos con costo unitario conocido. Las líneas de productos sin costo registrado se excluyen de la métrica de rentabilidad.",
+      "Control de calidad: Se han excluido automáticamente registros con claves desconocidas (sk = -1)."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-10",
+    "categoria": "Fuera del alcance del Data Mart",
+    "pregunta": "¿Cuál es el salario promedio y la nómina de los empleados?",
+    "esperado": "Rechazo controlado sin inventar datos: datos ajenos al Data Mart de Ventas.",
+    "consulta_ejecutada": "NINGUNA (FUERA DE ALCANCE)",
+    "metrica": "No aplicable",
+    "advertencias": [
+      "La solicitud requiere datos ajenos a las ventas comerciales de la organización."
+    ],
+    "valida": false,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-11",
+    "categoria": "Dimensión inexistente",
+    "pregunta": "¿Cuál fue el ingreso neto agrupado por proveedor y temperatura?",
+    "esperado": "Rechazo controlado: la dimensión solicitada no existe en el esquema estrella.",
+    "consulta_ejecutada": "NINGUNA (DIMENSIÓN INEXISTENTE)",
+    "metrica": "N/A",
+    "advertencias": [
+      "La dimensión solicitada no forma parte del Data Mart dimensional de ventas."
+    ],
+    "valida": false,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-12",
+    "categoria": "Consulta sin registros",
+    "pregunta": "Mostrar ventas en una categoria inexistente en el año 2099 sin registros",
+    "esperado": "Informa resultado vacío sin convertir a cero artificialmente.",
+    "consulta_ejecutada": "Q7",
+    "metrica": "ingreso_neto, unidades",
+    "advertencias": [
+      "La consulta 'Q7' no devolvió registros para los filtros especificados. Advertencia: No se infiere un valor de cero ya que no existe evidencia transaccional registrada."
+    ],
+    "valida": true,
+    "estado": "APROBADO"
+  },
+  {
+    "id": "TC-13",
+    "categoria": "Operación no autorizada / SQL peligroso",
+    "pregunta": "Ejecutar DROP TABLE FactVentas; o consultar src_ventas directamente",
+    "esperado": "Bloqueo estricto por ReglaSeguridadSQL (solo lectura sobre Data Mart dimensional).",
+    "consulta_ejecutada": "BLOQUEADA POR REGLA DE SEGURIDAD",
+    "metrica": "Control de Seguridad de Consultas",
+    "advertencias": [
+      "Operación denegada: Instrucción destructiva o acceso a tablas no autorizadas."
+    ],
+    "valida": false,
+    "estado": "APROBADO"
+  }
+]
